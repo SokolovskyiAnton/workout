@@ -17,5 +17,8 @@ export default new Vuex.Store({
       createWeak({commit}, weeks) {
           commit('createWeak', weeks)
       }
+  },
+  getters: {
+      weeks: s => s.weeks
   }
 })

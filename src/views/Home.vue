@@ -103,6 +103,7 @@ export default {
       }
 
       this.$store.dispatch('createWeak', week)
+      this.$router.push('/list')
       
     }
   }
