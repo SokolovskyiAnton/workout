@@ -5,11 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+      weeks: JSON.parse(localStorage.getItem('weeks') || '[]')
   },
   mutations: {
+      createWeak(state, weeks) {
+          state.weeks.push(weeks)
+          localStorage.setItem('weeks', JSON.stringify(state.weeks))
+      }
   },
   actions: {
-  },
-  modules: {
+      createWeak({commit}, weeks) {
+          commit('createWeak', weeks)
+      }
   }
 })
