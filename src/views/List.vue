@@ -6,8 +6,8 @@
       </div>
     </div>
     <hr>
-    <div class="row">
-      <table class="table" v-for="week of weeks" :key="week.id">
+    <div class="row" v-for="week of weeks" :key="week.id">
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -43,7 +43,11 @@
           </tr>
           
         </tbody>
+        
       </table>
+      <div>
+        <router-link tag="button" class="btn btn-primary mb-5" :to="'/weeks/' + week.id">Изменить</router-link>
+      </div>
     </div>
     
   </div>

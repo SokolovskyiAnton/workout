@@ -11,14 +11,31 @@ export default new Vuex.Store({
       createWeak(state, weeks) {
           state.weeks.push(weeks)
           localStorage.setItem('weeks', JSON.stringify(state.weeks))
+      },
+      updateWeek(state, {id, firstWeek, secondWeek, thirdWeek, fourthWeek}) {
+          const weeks = state.weeks.concat();
+
+          const idx = weeks.findIndex(t => t.id === id)
+
+          const week = weeks[idx]
+
+          weeks[idx] = {...week, firstWeek, secondWeek, thirdWeek, fourthWeek}
+
+          state.weeks = weeks
+
+          localStorage.setItem('weeks', JSON.stringify(state.weeks))
       }
   },
   actions: {
       createWeak({commit}, weeks) {
           commit('createWeak', weeks)
+      },
+      updateWeek({commit}, weeks) {
+        commit('updateWeek', weeks)
       }
   },
   getters: {
-      weeks: s => s.weeks
+      weeks: s => s.weeks,
+      weeksById: s => id => s.weeks.find(t => t.id === id)
   }
 })
