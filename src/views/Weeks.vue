@@ -60,27 +60,28 @@ export default {
   data() {
     return {
       firstWeek: {
-        firstWeekRun: null,
-        firstWeekLifting: null,
-        firstWeekPress: null
+        firstWeekRun: this.week,
+        firstWeekLifting: this.week,
+        firstWeekPress: this.week
       },
       secondWeek: {
-        secondWeekRun: null,
-        secondWeekLifting: null,
-        secondWeekPress: null
+        secondWeekRun: this.week,
+        secondWeekLifting: this.week,
+        secondWeekPress: this.week
       },
       thirdWeek: {
-        thirdWeekRun: null,
-        thirdWeekLifting: null,
-        thirdWeekPress: null
+        thirdWeekRun: this.week,
+        thirdWeekLifting: this.week,
+        thirdWeekPress: this.week
       },
       fourthWeek: {
-        fourthWeekRun: null,
-        fourthWeekLifting: null,
-        fourthWeekPress: null
+        fourthWeekRun: this.week,
+        fourthWeekLifting: this.week,
+        fourthWeekPress: this.week
       }
     }
-  },
+
+  },    
   methods: {
     create() {
       this.$store.dispatch('updateWeek', {
@@ -96,7 +97,20 @@ export default {
   },
   computed: {
     week() {
+      this.firstWeek.firstWeekRun = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.firstWeekRun
+      this.firstWeek.firstWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.firstWeekLifting
+      this.firstWeek.firstWeekPress = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.firstWeekPress
+      this.secondWeek.secondWeekRun = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.secondWeekRun
+      this.secondWeek.secondWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.secondWeekLifting
+      this.secondWeek.secondWeekPress = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.secondWeekPress
+      this.thirdWeek.thirdWeekRun = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.thirdWeekRun
+      this.thirdWeek.thirdWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.thirdWeekLifting
+      this.thirdWeek.thirdWeekPress = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.thirdWeekPress
+      this.fourthWeek.fourthWeekRun = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.fourthWeekRun
+      this.fourthWeek.fourthWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.fourthWeekLifting
+      this.fourthWeek.fourthWeekPress = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.fourthWeekPress
       return this.$store.getters.weeksById(+this.$route.params.id)
+
     },
     options() {
       let result = this.week.firstWeek.firstWeekRun
