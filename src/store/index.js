@@ -12,14 +12,14 @@ export default new Vuex.Store({
           state.weeks.push(weeks)
           localStorage.setItem('weeks', JSON.stringify(state.weeks))
       },
-      updateWeek(state, {id, firstWeek, secondWeek, thirdWeek, fourthWeek}) {
+      updateWeek(state, {id, firstWeek, secondWeek, thirdWeek, fourthWeek, timeWeek}) {
           const weeks = state.weeks.concat();
 
           const idx = weeks.findIndex(t => t.id === id)
 
           const week = weeks[idx]
 
-          weeks[idx] = {...week, firstWeek, secondWeek, thirdWeek, fourthWeek}
+          weeks[idx] = {...week, firstWeek, secondWeek, thirdWeek, fourthWeek, timeWeek}
 
           state.weeks = weeks
 

@@ -14,6 +14,7 @@
           <th scope="col">Бег</th>
           <th scope="col">Подтягивания</th>
           <th scope="col">Пресс</th>
+          <th scope="col">Время</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,7 @@
           <td><b-form-select  v-model="firstWeek.firstWeekRun"  :options="options"></b-form-select></td>
           <td><b-form-select  v-model="firstWeek.firstWeekLifting" :options="options1"></b-form-select></td>
           <td><b-form-select  v-model="firstWeek.firstWeekPress" :options="options2"></b-form-select></td>
+          <td><b-form-datepicker v-model="firstWeek.value" class="time"></b-form-datepicker></td>
         </tr>
         <tr>
           <th scope="row">2</th>
@@ -30,6 +32,7 @@
           </td>
           <td><b-form-select  v-model="secondWeek.secondWeekLifting" :options="options4"></b-form-select></td>
           <td><b-form-select  v-model="secondWeek.secondWeekPress" :options="options5"></b-form-select></td>
+          <td><b-form-datepicker v-model="secondWeek.value" class="time"></b-form-datepicker></td>
         </tr>
         <tr>
           <th scope="row">3</th>
@@ -38,6 +41,7 @@
           </td>
           <td><b-form-select  v-model="thirdWeek.thirdWeekLifting" :options="options7"></b-form-select></td>
           <td><b-form-select  v-model="thirdWeek.thirdWeekPress" :options="options8"></b-form-select></td>
+          <td><b-form-datepicker v-model="thirdWeek.value" class="time"></b-form-datepicker></td>
         </tr>
         <tr>
           <th scope="row">4</th>
@@ -46,6 +50,7 @@
           </td>
           <td><b-form-select  v-model="fourthWeek.fourthWeekLifting" :options="options10"></b-form-select></td>
           <td><b-form-select  v-model="fourthWeek.fourthWeekPress" :options="options11"></b-form-select></td>
+          <td><b-form-datepicker v-model="fourthWeek.value" class="time"></b-form-datepicker></td>
         </tr>
             
       </tbody>
@@ -62,22 +67,26 @@ export default {
       firstWeek: {
         firstWeekRun: this.week,
         firstWeekLifting: this.week,
-        firstWeekPress: this.week
+        firstWeekPress: this.week,
+        value: this.week
       },
       secondWeek: {
         secondWeekRun: this.week,
         secondWeekLifting: this.week,
-        secondWeekPress: this.week
+        secondWeekPress: this.week,
+        value: this.week
       },
       thirdWeek: {
         thirdWeekRun: this.week,
         thirdWeekLifting: this.week,
-        thirdWeekPress: this.week
+        thirdWeekPress: this.week,
+        value: this.week
       },
       fourthWeek: {
         fourthWeekRun: this.week,
         fourthWeekLifting: this.week,
-        fourthWeekPress: this.week
+        fourthWeekPress: this.week,
+        value: this.week
       }
     }
 
@@ -90,6 +99,7 @@ export default {
         secondWeek: this.secondWeek,
         thirdWeek: this.thirdWeek,
         fourthWeek: this.fourthWeek,
+        timeWeek: this.timeWeek
       })
       this.$router.push('/list')
       
@@ -100,15 +110,19 @@ export default {
       this.firstWeek.firstWeekRun = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.firstWeekRun
       this.firstWeek.firstWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.firstWeekLifting
       this.firstWeek.firstWeekPress = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.firstWeekPress
+      this.firstWeek.value = this.$store.getters.weeksById(+this.$route.params.id).firstWeek.value
       this.secondWeek.secondWeekRun = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.secondWeekRun
       this.secondWeek.secondWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.secondWeekLifting
       this.secondWeek.secondWeekPress = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.secondWeekPress
+      this.secondWeek.value = this.$store.getters.weeksById(+this.$route.params.id).secondWeek.value
       this.thirdWeek.thirdWeekRun = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.thirdWeekRun
       this.thirdWeek.thirdWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.thirdWeekLifting
       this.thirdWeek.thirdWeekPress = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.thirdWeekPress
+      this.thirdWeek.value = this.$store.getters.weeksById(+this.$route.params.id).thirdWeek.value
       this.fourthWeek.fourthWeekRun = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.fourthWeekRun
       this.fourthWeek.fourthWeekLifting = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.fourthWeekLifting
       this.fourthWeek.fourthWeekPress = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.fourthWeekPress
+      this.fourthWeek.value = this.$store.getters.weeksById(+this.$route.params.id).fourthWeek.value
       return this.$store.getters.weeksById(+this.$route.params.id)
 
     },
@@ -116,7 +130,7 @@ export default {
       let result = this.week.firstWeek.firstWeekRun
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -126,7 +140,7 @@ export default {
       let result = this.week.firstWeek.firstWeekLifting
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -136,7 +150,7 @@ export default {
       let result = this.week.firstWeek.firstWeekPress
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -147,7 +161,7 @@ export default {
       let result = this.week.secondWeek.secondWeekRun
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -157,7 +171,7 @@ export default {
       let result = this.week.secondWeek.secondWeekLifting
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -167,7 +181,7 @@ export default {
       let result = this.week.secondWeek.secondWeekPress
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -177,7 +191,7 @@ export default {
       let result = this.week.thirdWeek.thirdWeekRun
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -187,7 +201,7 @@ export default {
       let result = this.week.thirdWeek.thirdWeekLifting
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -197,7 +211,7 @@ export default {
       let result = this.week.thirdWeek.thirdWeekPress
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -207,7 +221,7 @@ export default {
       let result = this.week.fourthWeek.fourthWeekRun
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -217,7 +231,7 @@ export default {
       let result = this.week.fourthWeek.fourthWeekLifting
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 
@@ -227,7 +241,7 @@ export default {
       let result = this.week.fourthWeek.fourthWeekPress
       let options = [{value: null, text: result}];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 100; i++) {
         options.push({value: i, text: i})
       }
 

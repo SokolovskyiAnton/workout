@@ -7,12 +7,14 @@
     </div>
 
     <table class="table mt-3">
+
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Бег</th>
       <th scope="col">Подтягивания</th>
       <th scope="col">Пресс</th>
+      <th scope="col">Время</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +25,7 @@
       </td>
       <td><b-form-select  v-model="firstWeek.firstWeekLifting" :options="options"></b-form-select></td>
       <td><b-form-select  v-model="firstWeek.firstWeekPress" :options="options"></b-form-select></td>
+      <td><b-form-datepicker v-model="firstWeek.value" class="time"></b-form-datepicker></td>
     </tr>
     <tr>
       <th scope="row">2</th>
@@ -62,22 +65,29 @@ export default {
       firstWeek: {
         firstWeekRun: '',
         firstWeekLifting: '',
-        firstWeekPress: ''
+        firstWeekPress: '',
+        value: ''
       },
       secondWeek: {
         secondWeekRun: '',
         secondWeekLifting: '',
-        secondWeekPress: ''
+        secondWeekPress: '',
+        value: ''
       },
       thirdWeek: {
         thirdWeekRun: '',
         thirdWeekLifting: '',
-        thirdWeekPress: ''
+        thirdWeekPress: '',
+        value: ''
       },
       fourthWeek: {
         fourthWeekRun: '',
         fourthWeekLifting: '',
-        fourthWeekPress: ''
+        fourthWeekPress: '',
+        value: ''
+      },
+      timeWeek: {
+        value: ''
       }
     }
   },
@@ -111,5 +121,7 @@ export default {
 </script>
 
 <style  scoped>
-
+.time {
+  max-width: 260px;
+}
 </style>

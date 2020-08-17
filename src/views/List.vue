@@ -14,6 +14,7 @@
             <th scope="col">Бег</th>
             <th scope="col">Подтягивания</th>
             <th scope="col">Пресс</th>
+            <th scope="col">Время</th>
           </tr>
         </thead>
         <tbody>
@@ -22,24 +23,28 @@
             <td>{{week.firstWeek.firstWeekRun}}</td>
             <td>{{week.firstWeek.firstWeekLifting}}</td>
             <td>{{week.firstWeek.firstWeekPress}}</td>
+            <td>{{week.firstWeek.value}}</td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>{{week.secondWeek.secondWeekRun}}</td>
             <td>{{week.secondWeek.secondWeekLifting}}</td>
             <td>{{week.secondWeek.secondWeekPress}}</td>
+            <td>{{week.secondWeek.value}}</td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>{{week.thirdWeek.thirdWeekRun}}</td>
             <td>{{week.thirdWeek.thirdWeekLifting}}</td>
             <td>{{week.thirdWeek.thirdWeekPress}}</td>
+            <td>{{week.thirdWeek.value}}</td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>{{week.fourthWeek.fourthWeekRun}}</td>
             <td>{{week.fourthWeek.fourthWeekLifting}}</td>
             <td>{{week.fourthWeek.fourthWeekPress}}</td>
+            <td>{{week.fourthWeek.value}}</td>
           </tr>
           
         </tbody>
@@ -57,6 +62,7 @@
 
 
 export default {
+
   computed: {
     weeks() {
       return this.$store.getters.weeks
