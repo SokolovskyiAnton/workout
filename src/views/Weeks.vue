@@ -6,8 +6,8 @@
       </div>
     </div>
     <hr>
-
-    <table class="table mt-3">
+    <transition name="bounce">
+    <table v-if="show" class="table mt-3">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -52,10 +52,19 @@
           <td><b-form-select  v-model="fourthWeek.fourthWeekPress" :options="options11"></b-form-select></td>
           <td><b-form-datepicker v-model="fourthWeek.value" class="time"></b-form-datepicker></td>
         </tr>
+        <tr>
+          <td>
             
+          </td>
+          <td><button @click="createTimeout" @mouseup="show = !show" class="btn btn-primary">Сохранить</button></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
       </tbody>
+      
    </table>
-   <button @click="create" class="btn btn-primary">Создать</button>
+   </transition>
   </div>
 </template>
 
@@ -87,22 +96,23 @@ export default {
         fourthWeekLifting: this.week,
         fourthWeekPress: this.week,
         value: this.week
-      }
+      },
+      show: true
     }
 
   },    
   methods: {
-    create() {
-      this.$store.dispatch('updateWeek', {
+    createTimeout() {
+      setTimeout(() => {
+        this.$store.dispatch('updateWeek', {
         id: this.week.id,
         firstWeek: this.firstWeek,
         secondWeek: this.secondWeek,
         thirdWeek: this.thirdWeek,
-        fourthWeek: this.fourthWeek,
-        timeWeek: this.timeWeek
+        fourthWeek: this.fourthWeek
       })
       this.$router.push('/list')
-      
+      }, 600);
     }
   },
   computed: {
@@ -250,3 +260,30 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.table {
+  border: 1px solid rgb(66, 66, 66);
+}
+
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+thead {
+  background-color: #03fcf0;
+}
+</style>

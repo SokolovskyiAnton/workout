@@ -5,8 +5,8 @@
         <h3>Создать таблицу</h3>
       </div>
     </div>
-
-    <table class="table mt-3">
+<transition name="bounce">
+  <table v-if="show" class="table mt-3">
 
   <thead>
     <tr>
@@ -34,6 +34,7 @@
       </td>
       <td><b-form-select  v-model="secondWeek.secondWeekLifting" :options="options"></b-form-select></td>
       <td><b-form-select  v-model="secondWeek.secondWeekPress" :options="options"></b-form-select></td>
+      <td><b-form-datepicker v-model="firstWeek.value" class="time"></b-form-datepicker></td>
     </tr>
     <tr>
       <th scope="row">3</th>
@@ -42,6 +43,7 @@
       </td>
       <td><b-form-select  v-model="thirdWeek.thirdWeekLifting" :options="options"></b-form-select></td>
       <td><b-form-select  v-model="thirdWeek.thirdWeekPress" :options="options"></b-form-select></td>
+      <td><b-form-datepicker v-model="firstWeek.value" class="time"></b-form-datepicker></td>
     </tr>
     <tr>
       <th scope="row">4</th>
@@ -50,10 +52,20 @@
       </td>
       <td><b-form-select  v-model="fourthWeek.fourthWeekLifting" :options="options"></b-form-select></td>
       <td><b-form-select  v-model="fourthWeek.fourthWeekPress" :options="options"></b-form-select></td>
+      <td><b-form-datepicker v-model="firstWeek.value" class="time"></b-form-datepicker></td>
+    </tr>
+    <tr>
+      <td>
+        
+      </td>
+      <td><button @click="create" @mouseup="show = !show" class="btn btn-primary">Создать</button></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
-</table>
-<button @click="create" class="btn btn-primary">Создать</button>
+  </table>
+</transition>
   </div>
 </template>
 
@@ -86,9 +98,7 @@ export default {
         fourthWeekPress: '',
         value: ''
       },
-      timeWeek: {
-        value: ''
-      }
+      show: true
     }
   },
   computed: {
@@ -104,7 +114,8 @@ export default {
   },
   methods: {
     create() {
-      const week = {
+      setTimeout(() => {
+        const week = {
         firstWeek: this.firstWeek,
         secondWeek: this.secondWeek,
         thirdWeek: this.thirdWeek,
@@ -114,6 +125,7 @@ export default {
 
       this.$store.dispatch('createWeak', week)
       this.$router.push('/list')
+      }, 600);
       
     }
   }
@@ -121,7 +133,31 @@ export default {
 </script>
 
 <style  scoped>
+.table {
+  border: 1px solid rgb(66, 66, 66);
+}
+
 .time {
-  max-width: 260px;
+  max-width: 300px;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+thead {
+  background-color: #03fcf0;
 }
 </style>

@@ -46,13 +46,19 @@
             <td>{{week.fourthWeek.fourthWeekPress}}</td>
             <td>{{week.fourthWeek.value}}</td>
           </tr>
+          <tr>
+            <th scope="row">Итого</th>
+            <td>{{week.firstWeek.firstWeekRun + week.secondWeek.secondWeekRun + week.thirdWeek.thirdWeekRun + week.fourthWeek.fourthWeekRun}}</td>
+            <td>{{week.firstWeek.firstWeekLifting + week.secondWeek.secondWeekLifting + week.thirdWeek.thirdWeekLifting + week.fourthWeek.fourthWeekLifting}}</td>
+            <td>{{week.firstWeek.firstWeekPress + week.secondWeek.secondWeekPress + week.thirdWeek.thirdWeekPress + week.fourthWeek.fourthWeekPress}}</td>
+            <td></td>
+          </tr>
+          
           
         </tbody>
         
       </table>
-      <div>
-        <router-link tag="button" class="btn btn-primary mb-5" :to="'/weeks/' + week.id">Изменить</router-link>
-      </div>
+      <div class="mk2 mb-3"><router-link tag="button" class="btn btn-primary" :to="'/weeks/' + week.id">Изменить</router-link></div>
     </div>
     
   </div>
@@ -62,19 +68,9 @@
 
 
 export default {
-
   computed: {
     weeks() {
       return this.$store.getters.weeks
-    }, 
-    options() {
-      let options = [];
-
-      for (let i = 1; i <= 50; i++) {
-        options.push(i)
-      }
-
-      return options
     }
   }
 }
@@ -83,6 +79,14 @@ export default {
 <style scoped>
 .table {
   border: 1px solid rgb(66, 66, 66);
+}
+
+thead {
+  background-color: #03fcf0;
+}
+
+.mk2 {
+  padding: 10px;
 }
 
 </style>
